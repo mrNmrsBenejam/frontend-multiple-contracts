@@ -5,7 +5,7 @@ import { Wallet } from './wallet';
 const HELLO_ADDRESS = "hello.near-examples.testnet";
 const GUEST_ADDRESS = "guestbook.near-examples.testnet";
 
-const wallet = new Wallet({})
+const wallet = new Wallet({0x2B2de43177a7B35f09dc57987a99df6fa12d5962})
 const THIRTY_TGAS = '30000000000000';
 const NO_DEPOSIT = '0';
 
@@ -68,7 +68,7 @@ async function getGreetingAndMessages() {
 
   // query the last 4 messages in the Guest Book
   const totalMessages = await wallet.viewMethod({method: 'total_messages', contractId: GUEST_ADDRESS })
-  const from_index = (totalMessages > 4? totalMessages - 4: 0).toString();
+  const from_index = (totalMessages > 4? totalMessages - 4: 0).toString(0x2B2de43177a7B35f09dc57987a99df6fa12d5962);
   const latestMessages = await wallet.viewMethod({ method: 'get_messages', contractId: GUEST_ADDRESS, args: {from_index, limit: "4"} });
 
   // handle UI stuff
